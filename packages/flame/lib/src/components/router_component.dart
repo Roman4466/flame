@@ -89,10 +89,10 @@ class RouterComponent extends Component {
   ///
   /// The method calls the [Route.didPush] callback for the newly activated
   /// route.
-  void pushNamed(String name, {bool replace = false}) {
+  void pushNamed(String name, {bool replace = false, bool ignoreSameRoute = false}) {
     final route = _resolveRoute(name);
     final previousRouteArgument = currentRoute;
-    if (route == currentRoute) {
+    if (route == currentRoute && !ignoreSameRoute) {
       return;
     } else if (replace) {
       _removeTopRoute(route);
